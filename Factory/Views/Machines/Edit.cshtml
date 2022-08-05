@@ -1,0 +1,45 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Factory.Models.Machine
+<div id=Header>
+  <h1 id=HeaderText>Dr. SillyStringz's Factory</h1>
+</div>
+
+<h2>Edit Machine</h2>
+
+<h3>Edit this Machine: @Html.DisplayFor(model => model.Name)</h3>
+
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.MachineId)
+  <br>
+  @Html.LabelFor(model => model.Name)
+  @Html.EditorFor(model => model.Name)
+  <br>
+  @Html.LabelFor(model => model.SerialNumber)
+  @Html.EditorFor(model => model.SerialNumber)
+  <br>
+  @Html.LabelFor(model => model.Description)
+  @Html.EditorFor(model => model.Description)
+  <br>
+  @Html.LabelFor(model => model.Location)
+  @Html.EditorFor(model => model.Location)
+  <br>
+
+@if(@Model.JoinEntities.Count == 0)
+  {
+    <p>This Machine does not have any Engineers assigned yet!</p>
+  }else
+    {
+      <h4>Engineers assigned to this Machine:</h4>
+        @foreach(var join in Model.JoinEntities)
+        {
+          <li>@join.Engineer.Name</li>
+        }
+        <input type="submit" value="Save Changes" />
+    }
+}
+<p>@Html.ActionLink("Back to list", "Index")</p>
+<p>@Html.ActionLink("Home", "Index", "Home")</p>
