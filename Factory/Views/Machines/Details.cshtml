@@ -1,0 +1,22 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Factory.Models.Machine
+
+<div id=Header>
+  <h1 id=HeaderText>Dr. SillyStringz's Factory</h1>
+</div>
+
+<h2>Machine Details</h2>
+<h3>@Html.DisplayFor(model => model.Name) Details</h3>
+<hr />
+
+<h4>@Html.DisplayNameFor(model => model.SerialNumber): @Html.DisplayFor(model => model.SerialNumber)</h4>
+<h4>@Html.DisplayNameFor(model => model.Description): @Html.DisplayFor(model => model.Description)</h4>
+<h4>@Html.DisplayNameFor(model => model.Location): @Html.DisplayFor(model => model.Location)</h4>
+
+@if(@Model.JoinEntities.Count ==-0)
+  {
+    <p>This Machine does not have any Engineers Assigned</p>
+  }
